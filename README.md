@@ -3,4 +3,4 @@
 Flutter demo project using BLoC pattern.
 
 - from scratch
-- using library (TBD)
+- using library

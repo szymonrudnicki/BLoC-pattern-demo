@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:flutter_bloc_pattern_demo/bloc_from_scratch/counter_event.dart';
+import 'package:flutter_bloc_pattern_demo/counter_event.dart';
 
-class CounterBloc {
+class CounterStratchBloc {
   int _counter = 0;
 
   final _counterStateController = StreamController<int>();
@@ -15,16 +15,19 @@ class CounterBloc {
 
   Sink<CounterEvent> get counterEventSink => _counterEventController.sink;
 
-  CounterBloc() {
+  CounterStratchBloc() {
     _counterEventController.stream.listen(_mapEventToState);
   }
 
   void _mapEventToState(CounterEvent event) {
-    if (event is IncrementEvent)
-      _counter++;
-    else
-      _counter--;
-
+    switch(event) {
+      case CounterEvent.increment:
+        _counter++;
+        break;
+      case CounterEvent.decrement:
+        _counter--;
+        break;
+    }
     _inCounter.add(_counter);
   }
 
